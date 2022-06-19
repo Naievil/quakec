@@ -145,16 +145,13 @@ float waypoint_mode;
 float gotdog;
 
 void () Round_Core = {};
-void ()Do_Zombie_AI = {};
+void () Do_Zombie_AI = {};
 void () updateDogRound = {};
 void () InitRounds = {};
 
 .string Weapon_Name;
 .vector Flash_Offset;
 .float Flash_Size;
-
-float(string s) tokenize = {}
-string(float num) argv = {};
 
 void(float playernum, float points, float am, float kills, string name, entity person) UpdatePlayerPoints = {};
 

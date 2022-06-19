@@ -208,18 +208,18 @@ void(vector start, vector min, vector max, vector end, float nomonsters, entity 
 float(vector start, vector min, vector max, vector end, float nomonsters, entity forent) tracemove = #99; 
 entity (entity start, .float field, float match) findfloat = #98;
 float(string s) stof = #81;	// 2001-09-20 QuakeC string manipulation by FrikaC
-//vector(entity what) Get_Waypoint_Near = #83;
-//float(entity zombie, entity target) Do_Pathfind_psp = #84;
-//void(string s) Open_Waypoint = #85;
-//vector(entity zombie,vector start,vector min, vector max) Get_Next_Waypoint = #86;
-//void(entity client, float type, float cost, float weapon) useprint = #87;
-//vector(entity zombie,vector start,vector min, vector max) Get_First_Waypoint = #88;
-//void(string s) Close_Waypoint = #89;
+vector(entity what) Get_Waypoint_Near = #83;
+float(entity zombie, entity target) Do_Pathfind_psp = #84;
+void(string s) Open_Waypoint = #85;
+vector(entity zombie,vector start,vector min, vector max) Get_Next_Waypoint = #86;
+void(entity client, float type, float cost, float weapon) useprint = #87;
+vector(entity zombie,vector start,vector min, vector max) Get_First_Waypoint = #88;
+void(string s) Close_Waypoint = #89;
 
-//void(entity plr, float achievement) achievement = #79;
+void(entity plr, float achievement) achievement = #79;
 
-//void(string trackname) songegg = #500;
-//void() nzp_maxammo             = #501;
+void(string trackname) songegg = #500;
+void() nzp_maxammo             = #501;
 /*
 type 0 = clear
 type 1 = buy door
@@ -234,25 +234,25 @@ type 8 = require power
 
 
 // 2001-09-20 QuakeC file access by FrikaC  start
-//float(string filename, float mode) fopen = #110;
-//void(float fhandle) fclose = #111;
-//string(float fhandle) fgets = #112;
-//void(float fhandle, string s) fputs = #113;
+float(string filename, float mode) fopen = #110;
+void(float fhandle) fclose = #111;
+string(float fhandle) fgets = #112;
+void(float fhandle, string s) fputs = #113;
 // 2001-09-20 QuakeC file access by FrikaC  end
 
 // 2001-09-20 QuakeC string manipulation by FrikaC  start
-//float(string s) strlen = #114;
-//string(string s1, string s2) strcat = #115;
-//string(string s, float start, float length) substring = #116;
-//vector(string s) stov = #117;
-//string(string s) strzone = #118;
-//string(string s) strunzone = #119;
-//string(string s) strtrim = #120;
+float(string s) strlen = #114;
+string(string s1, string s2) strcat = #115;
+string(string s, float start, float length) substring = #116;
+vector(string s) stov = #117;
+string(string s) strzone = #118;
+string(string s) strunzone = #119;
+string(string s) strtrim = #120;
 // 2001-09-20 QuakeC string manipulation by FrikaC  end
 
 // 2001-11-15 DarkPlaces general builtin functions by Lord Havoc  start
-//float(string s) tokenize = #441;
-//string(float num) argv = #442;
+float(string s) tokenize = #441;
+string(float num) argv = #442;
 // 2001-11-15 DarkPlaces general builtin functions by Lord Havoc  end
 
 //
