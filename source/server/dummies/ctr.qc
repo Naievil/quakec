@@ -97,7 +97,6 @@ void() GetUp = {};
 void() Weapon_Logic = {};
 void Set_W_Frame (float startframe, float endframe, float duration, float funccalledin, float animtype, void(optional float t) endanimfunc, string set_model, float dontstartnew, float side) = {}
 void() Z_ElectroShock = {}
-float tracemove(vector start, vector min, vector max, vector end, float nomonsters, entity forent) = {return 0;};
 void(entity who) makeCrawler = {};
 void() spawnAllZombEnts = {};
 void() set_z_health = {};
@@ -156,11 +155,6 @@ void () InitRounds = {};
 
 float(string s) tokenize = {}
 string(float num) argv = {};
-
-float (string s) stof = {return 0;}
-
-entity (entity start, .float field, float match) findfloat = {return self;};
-
 
 void(float playernum, float points, float am, float kills, string name, entity person) UpdatePlayerPoints = {};
 
