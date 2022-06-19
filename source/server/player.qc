@@ -524,8 +524,6 @@ void() PlayerSpawn =
 	//custom weapon stuff (we want to put this here so we can send the info to the client with an entity)
 	// DISGUSTING.
 	//nzd_defineweapon(self);
-
-	//centerprint(self, CustomWeapons[0].vmodel);
 	
 	entity who = find(world,classname,"player");
 	while(who != self && !self.playernum)

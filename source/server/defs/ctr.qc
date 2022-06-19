@@ -469,7 +469,7 @@ string(float num) argv = #442;
 .vector finaldest;
 .vector pos1, pos2/*, mangle*/;
 
-//void(vector o, vector d, float color, float count) particle = #48;// start a particle effect
+void(vector o, vector d, float color, float count) particle = #48;// start a particle effect
 void(string s) bprint_psp					= #23;
 void(entity client, string s) sprint_psp	= #24;
 // End

@@ -126,8 +126,10 @@ void() precaches =
 	
 	#ifndef PSP
 	#ifndef NX
+	#ifndef CTR
 	if (world.song != "")
 		precache_sound (world.song);
+	#endif
 	#endif
 	#endif
 
@@ -136,8 +138,6 @@ void() precaches =
 	//
 
 	// sprites
-	// naiveil -- fixme
-	#ifndef CTR
 	precache_model ("models/sprites/revive.spr");
 	precache_model ("models/sprites/revive_white.spr");
 	precache_model ("models/sprites/sprkle.spr");
@@ -170,15 +170,19 @@ void() precaches =
 	precache_model ("models/pu/perkbottle!.mdl");
 
 	// start weapons
+
 	precache_model ("models/weapons/m1911/v_colt.mdl");
 	precache_model ("models/weapons/m1911/g_colt.mdl");
 	precache_model ("models/weapons/knife/v_knife.mdl");
+
+// naievil -- fixme, why is this broken?
+#ifndef CTR
 	precache_model ("models/weapons/grenade/v_grenade.mdl");
 	precache_model ("models/weapons/grenade/g_grenade.mdl");
 	precache_model ("models/weapons/grenade/g_betty.mdl");	
 	precache_model ("models/weapons/grenade/v_betty.mdl");
 	precache_model ("models/weapons/morphine/v_morphine.mdl");
-
+#endif
 	//
 	// Sounds
 	//
@@ -285,7 +289,6 @@ void() precaches =
 	precache_sound ("sounds/zombie/s1.wav");
 	precache_sound ("sounds/zombie/sc0.wav");
 	precache_sound ("sounds/zombie/sc1.wav");
-	#endif
 	// null
 	precache_sound("sounds/null.wav");
 
