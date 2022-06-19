@@ -1,0 +1,168 @@
+/*
+	server/dummies/generic.qc
+
+	generic (all platform) dummys
+
+	Copyright (C) 2021 NZ:P Team
+
+	This program is free software; you can redistribute it and/or
+	modify it under the terms of the GNU General Public License
+	as published by the Free Software Foundation; either version 2
+	of the License, or (at your option) any later version.
+
+	This program is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+	See the GNU General Public License for more details.
+
+	You should have received a copy of the GNU General Public License
+	along with this program; if not, write to:
+
+		Free Software Foundation, Inc.
+		59 Temple Place - Suite 330
+		Boston, MA  02111-1307, USA
+
+*/
+
+// Triggers
+void() trigger_relay            = {remove(self);};
+void() trigger_changelevel      = {remove(self);};
+void() trigger_counter          = {remove(self);};
+void() trigger_secret           = {remove(self);};
+void() trigger_setskill         = {remove(self);};
+void() trigger_monsterjump      = {remove(self);};
+void() trigger_onlyregistered   = {remove(self);};
+void() trigger_push             = {remove(self);};
+void() trigger_hurt             = {remove(self);};
+// Player Starts
+void() info_player_start        = {};
+void() info_player_start2       = {};
+void() info_player_deathmatch   = {};
+void() info_player_coop         = {};
+void() info_player_tank         = {};
+void() info_player_nikolai		= {};
+void() info_player_doctor		= {};
+void() info_player_takeo		= {};
+
+void() zapper1 = {remove(self);};
+void() zapper2 = {remove(self);};
+void() item_switch = {remove(self);};
+void() zap_light = {remove(self);};
+void() info_end = {remove(self);};
+
+//// beta removal 
+void() monster_dog = {remove(self);};
+void() item_pap = {remove(self);};
+//void() item_juggernog = {remove(self);};
+//void() item_flopper = {remove(self);};
+//void() item_douple = {remove(self);};
+//void() item_speed = {remove(self);};
+//void() item_revive = {remove(self);};
+void() palm_tree_closed = {remove(self);};
+void() func_model = {remove(self);};
+void() wooden_crate = {remove(self);};
+
+void() change_frame;
+void() change_frame2 =
+{
+	self.frame++;
+	self.think = change_frame;
+	self.nextthink = time + 1;
+}
+void() change_frame =
+{
+	self.frame++;
+	self.think = change_frame2;
+	self.nextthink = time + 1;
+}
+
+#ifdef CTR
+void LoadWaypointData() = {};
+#endif
+
+// Old Demo defs
+.float fogdogs;
+.float MaxRange;
+void() trigger_teleport = {remove(self);};
+void() tigger_mainframe = {remove(self);}; //lol this typo is in their old fgd too, apparently.
+void() trigger_teleport_area = {remove(self);};
+
+
+
+void(entity person, float expamt , float doublepoint) addmoney = {};
+void() W_SprintStop = {};
+void(float to) SwitchWeapon = {};
+void() GetUp = {};
+void() Weapon_Logic = {};
+void Set_W_Frame (float startframe, float endframe, float duration, float funccalledin, float animtype, void(optional float t) endanimfunc, string set_model, float dontstartnew, float side) = {}
+void() Z_ElectroShock = {}
+float tracemove(vector start, vector min, vector max, vector end, float nomonsters, entity forent) = {return 0;};
+void(entity who) makeCrawler = {};
+void() spawnAllZombEnts = {};
+void() set_z_health = {};
+float() crandom = {}
+float() spawn_a_zombieA = {};
+void() Waypoint_Logic = {};
+void (entity e) Light_None = {};
+
+entity local_client;
+
+void() ParseClientCommand = {};
+void() Soft_Restart = {};
+void() LS_Setup = {};
+void() PU_Init = {}
+
+
+
+
+float rounds;
+
+void() SetPerk(entity client, float to) = { };
+void(float newtime, float newtype, entity change) PromptLevelChange = {};
+void(float count) UpdatePlayerCount = { };
+void() UpdateV2model = {};
+void SetRound(entity client, float to) = {};
+.float viewzoom;
+void(string chaptertitle, string location, string date, string person, entity who) WorldText = {};
+.float playernum;
+float player_count;
+vector VEC_VIEW_OFS = '0 0 32';
+float spawn_time;
+
+float framecount;
+float waypoint_mode;
+#define true 1
+#define false 0
+.string song;
+.entity head, larm, rarm;
+
+.float downed;
+.float maxspeed;
+.float sprinting;
+.float zoom;
+.float facingenemy;
+
+float gotdog;
+
+void () Round_Core = {};
+void ()Do_Zombie_AI = {};
+void () updateDogRound = {};
+void () InitRounds = {};
+
+.string Weapon_Name;
+.vector Flash_Offset;
+.float Flash_Size;
+
+float(string s) tokenize = {}
+string(float num) argv = {};
+
+float (string s) stof = {return 0;}
+
+entity (entity start, .float field, float match) findfloat = {return self;};
+
+
+void(float playernum, float points, float am, float kills, string name, entity person) UpdatePlayerPoints = {};
+
+
+
