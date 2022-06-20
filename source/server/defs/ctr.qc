@@ -27,10 +27,8 @@ float		deathmatch;
 float		coop;
 float		teamplay;
 float		serverflags;
-float		total_secrets;
-float		total_monsters;
-float		found_secrets;
-float		killed_monsters;
+float		rounds;
+float		rounds_change;
 float		parm1, parm2, parm3, parm4, parm5, parm6, parm7, parm8, parm9, parm10, parm11, parm12, parm13, parm14, parm15, parm16;
 vector		v_forward, v_up, v_right;	// set by makevectors()
 float		trace_allsolid;
@@ -46,6 +44,7 @@ float		trace_inwater;
 entity          msg_entity;                      // destination of single entity writes
 void()          main;                            // only for testing
 void()		StartFrame;
+void()		EndFrame;
 void() 		PlayerPreThink;
 void() 		PlayerPostThink;
 void()		ClientKill;
@@ -54,6 +53,9 @@ void() 		PutClientInServer;		// call after setting the parm1... parms
 void()		ClientDisconnect;
 void()		SetNewParms;			// called when a client first connects to
 void()		SetChangeParms;			// call to set parms for self so they can
+void()		ParseClientCommand;		// special command calls
+string 		CMD_STRING;
+void()		Soft_Restart;
 void		end_sys_globals;		// flag for structure dumping
 
 .float		modelindex;		// *** model index in the precached list
@@ -86,10 +88,7 @@ void		end_sys_globals;		// flag for structure dumping
 .string		weaponmodel;
 .float		weaponframe;
 .float		currentammo;
-.float		ammo_shells;
-.float 		ammo_nails;
-.float      ammo_rockets;
-.float 		ammo_cells;
+.float		currentmag;
 .float 		items;
 .float		takedamage;
 .entity		chain;
@@ -344,7 +343,7 @@ string(float num) argv = #442;
 
 //Half Life View Offset is 64
 //64 units above ground, for our purposes it's, 64 - (how low bounding box goes)
-//vector VEC_VIEW_OFS = '0 0 32';
+vector VEC_VIEW_OFS = '0 0 32';
 
 //Standard Quake Hull
 //vector	VEC_HULL_MIN = '-16 -16 -24';

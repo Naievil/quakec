@@ -33,13 +33,10 @@ void LoadWaypointData() = {};
 
 entity local_client;
 
-float rounds;
-
 .float viewzoom;
 void(string chaptertitle, string location, string date, string person, entity who) WorldText = {};
 .float playernum;
 float player_count;
-vector VEC_VIEW_OFS = '0 0 32';
 float spawn_time;
 
 float framecount;
@@ -60,9 +57,6 @@ float gotdog;
 .string Weapon_Name;
 .vector Flash_Offset;
 .float Flash_Size;
-
-
-string 		CMD_STRING;
 
 void GiveAchievement(float achievement_id, optional entity who) = {};
 

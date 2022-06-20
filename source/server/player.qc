@@ -218,6 +218,7 @@ void(float override) JumpCheck =
 
 void() PlayerPreThink =
 {
+	centerprint(self, self.Weapon_Name);
 	if (self.downed) {
 		self.maxspeed = 30;
 	} else {
@@ -518,7 +519,7 @@ void() PlayerSpawn =
 	self.classname = "player";
 	self.solid = SOLID_BBOX;
 	setmodel(self, "models/player.mdl");
-	self.movetype = 3;
+	self.movetype = MOVETYPE_WALK;
 	self.max_health = self.health = 100;
 
 	//custom weapon stuff (we want to put this here so we can send the info to the client with an entity)
