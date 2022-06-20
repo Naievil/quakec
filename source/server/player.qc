@@ -518,7 +518,7 @@ void() PlayerSpawn =
 	self.classname = "player";
 	self.solid = SOLID_BBOX;
 	setmodel(self, "models/player.mdl");
-	self.movetype = MOVETYPE_WALK;
+	self.movetype = 3;
 	self.max_health = self.health = 100;
 
 	//custom weapon stuff (we want to put this here so we can send the info to the client with an entity)

@@ -174,15 +174,12 @@ void() precaches =
 	precache_model ("models/weapons/m1911/v_colt.mdl");
 	precache_model ("models/weapons/m1911/g_colt.mdl");
 	precache_model ("models/weapons/knife/v_knife.mdl");
-
-// naievil -- fixme, why is this broken?
-#ifndef CTR
 	precache_model ("models/weapons/grenade/v_grenade.mdl");
 	precache_model ("models/weapons/grenade/g_grenade.mdl");
 	precache_model ("models/weapons/grenade/g_betty.mdl");	
 	precache_model ("models/weapons/grenade/v_betty.mdl");
 	precache_model ("models/weapons/morphine/v_morphine.mdl");
-#endif
+
 	//
 	// Sounds
 	//
