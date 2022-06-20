@@ -36,4 +36,10 @@ echo  compiling VITA QC
 echo ====================
 echo.
 fteqcc-cli-win.exe -srcfile ../progs/vita.src
+echo.
+echo ====================
+echo  compiling 3DS QC
+echo ====================
+echo.
+fteqcc-cli-win.exe -srcfile ../progs/ctr.src
 pause
