@@ -127,6 +127,9 @@ void		end_sys_globals;		// flag for structure dumping
 .string		message;		// trigger messages
 .float		sounds;		// either a cd track number or sound number
 .string     noise, noise1, noise2, noise3;  // contains names of wavs to play
+.vector		ADS_Offset;
+.string 	Weapon_Name;
+.string		Weapon_Name_Touch;
 void		end_sys_fields;			// flag for structure dumping
 // End. Lines below this MAY be altered, to some extent
 

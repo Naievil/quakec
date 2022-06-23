@@ -182,7 +182,6 @@ void() PlayerJump =
 
 void(float override) JumpCheck =
 {
-	#ifndef CTR
 	#ifndef PC
 	override = 0;
 	#endif 
@@ -212,7 +211,6 @@ void(float override) JumpCheck =
 		}
 	} else
 		self.flags = self.flags | FL_JUMPRELEASED;
-	#endif
 }
 
 

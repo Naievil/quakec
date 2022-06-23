@@ -300,8 +300,6 @@ void() worldspawn =
 {
 	precaches();
 
-// naievil -- fixme
-#ifndef CTR
 	// Define all of our Light Styles
 	LS_Setup();
 
@@ -345,7 +343,6 @@ void() worldspawn =
 	G_PERKS = 0;
 	G_PERKPOWER = 0;
 	load_nzd();
-#endif
 	
 }
 
