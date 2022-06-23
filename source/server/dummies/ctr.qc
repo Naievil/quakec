@@ -68,8 +68,5 @@ void GiveAchievement(float achievement_id, optional entity who) = {};
 .float button6;
 .float button7;
 .float button8;
-
-.string Weapon_Name_Touch;
-
 .vector			ADS_Offset;
 
