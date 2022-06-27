@@ -216,7 +216,6 @@ void(float override) JumpCheck =
 
 void() PlayerPreThink =
 {
-	centerprint(self, self.Weapon_Name);
 	if (self.downed) {
 		self.maxspeed = 30;
 	} else {

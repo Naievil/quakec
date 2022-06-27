@@ -89,6 +89,7 @@ void		end_sys_globals;		// flag for structure dumping
 .float		weaponframe;
 .float		currentammo;
 .float		currentmag;
+.float		zoom;
 .float 		items;
 .float		takedamage;
 .entity		chain;
@@ -130,6 +131,8 @@ void		end_sys_globals;		// flag for structure dumping
 .vector		ADS_Offset;
 .string 	Weapon_Name;
 .string		Weapon_Name_Touch;
+.float      maxspeed;
+.float      facingenemy;
 void		end_sys_fields;			// flag for structure dumping
 // End. Lines below this MAY be altered, to some extent
 
