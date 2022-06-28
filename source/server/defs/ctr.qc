@@ -83,7 +83,8 @@ void		end_sys_globals;		// flag for structure dumping
 .float		nextthink;
 .entity		groundentity;
 .float		health;
-.float		frags;
+.float		points;
+.float 		kills;
 .float		weapon;			// one of the W_COLT, etc flags
 .string		weaponmodel;
 .float		weaponframe;
@@ -98,6 +99,12 @@ void		end_sys_globals;		// flag for structure dumping
 .float		button0;		// 
 .float		button1;		// 
 .float		button2;		// 
+.float		button3;		// 
+.float		button4;		// 
+.float		button5;		// 
+.float		button6;		// 
+.float		button7;		// 
+.float		button8;		// 
 .float		impulse;		// weapon changes
 .float		fixangle;
 .vector		v_angle;		// view / targeting angle for players
@@ -116,6 +123,9 @@ void		end_sys_globals;		// flag for structure dumping
 .float		ideal_yaw;
 .float		yaw_speed;
 .entity		aiment;
+.entity 	head;
+.entity 	larm;
+.entity 	rarm;
 .entity 	goalentity;		// a movetarget or an enemy
 .float		spawnflags;
 .string		target;
@@ -129,6 +139,8 @@ void		end_sys_globals;		// flag for structure dumping
 .float		sounds;		// either a cd track number or sound number
 .string     noise, noise1, noise2, noise3;  // contains names of wavs to play
 .vector		ADS_Offset;
+.vector		Flash_Offset;
+.float 		Flash_Size;
 .string 	Weapon_Name;
 .string		Weapon_Name_Touch;
 .float      maxspeed;

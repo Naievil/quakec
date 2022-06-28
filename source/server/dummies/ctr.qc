@@ -30,43 +30,9 @@ void LoadWaypointData() = {};
 // Old Demo defs
 .float fogdogs;
 .float MaxRange;
-
-entity local_client;
-
-.float viewzoom;
-void(string chaptertitle, string location, string date, string person, entity who) WorldText = {};
-.float playernum;
-float player_count;
-float spawn_time;
-
-float framecount;
-float waypoint_mode;
-#define true 1
-#define false 0
-.string song;
-.entity head, larm, rarm;
-
-.float downed;
-.float maxspeed;
-.float sprinting;
-.float zoom;
-.float facingenemy;
-
 float gotdog;
 
-.string Weapon_Name;
-.vector Flash_Offset;
-.float Flash_Size;
+void(string chaptertitle, string location, string date, string person, entity who) WorldText = {};
 
 void GiveAchievement(float achievement_id, optional entity who) = {};
-
-
-
-.float button3;
-.float button4;
-.float button5;
-.float button6;
-.float button7;
-.float button8;
-.vector			ADS_Offset;
 
