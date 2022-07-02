@@ -28,7 +28,7 @@
 float() spawn_a_dogA;
 void() zapper_cooldown;
 
-void() Spawn_Enemy = 
+void() Spawn_Enemy =
 {
 	// temporarily prevent spawning
 	if (nuke_powerup_spawndelay > time)
@@ -69,7 +69,7 @@ float() getZombieTotal = {
 			multiplier *= rounds * 0.15;
 
 		if (plrcnt == 1)
-			count += rint((0.5 * 6) * multiplier); 
+			count += rint((0.5 * 6) * multiplier);
 		else
 			count += rint((plrcnt * 6) * multiplier);
 
@@ -135,7 +135,7 @@ void() EndRound =
 	if (rounds >= 10) {
 		entity players;
 		players = find(world, classname, "player");
-		
+
 		while(players != world) {
 			if (players.ach_tracker_npnp == 0) {
 				GiveAchievement(5, players);
@@ -152,7 +152,7 @@ void() EndRound =
 void() PlayerSpawn;
 
 void() NewRound =
-{		
+{
 	entity who = find(world,classname,"spectator");
 	while(who != world)
 	{
@@ -162,7 +162,7 @@ void() NewRound =
 			PlayerSpawn();
 			break;
 		}
-		
+
 	}
 
 	entity tempe;
@@ -216,7 +216,7 @@ void() NewRound =
 	}
 
 	set_z_health();
-	
+
 	maxreward = 50 * rounds;
 	if (maxreward > 500)
 		maxreward = 500;
@@ -225,13 +225,13 @@ void() NewRound =
 	Current_Zombies = 0;
 	spawn_delay = 0;
 	totalpowerups = 0;
-	
+
 	if (rounds == dogRound && gotdog) {
 		roundtype = 2;
-		localcmd("fog 0.25\n"); 
+		localcmd("fog 0.25\n");
 	} else {
 		roundtype = 1;
-		
+
 		if (world.fog) {
 			#ifdef PSP
 			localcmd(strcat("fog ", world.fog));
@@ -286,58 +286,53 @@ void() NewRound =
 		zaps = find(zaps, classname, "zapper_switch");
 	}
 }
+
 void() Round_Core =
 {
 	if (game_over)
 		return;
-	
-	if (round_changetime <= (time + 2) && !rounds && round_changetime) {
-		rounds_change = 2;
+
+	if (round_changetime) {
+		if (round_changetime <= (time + 2)) {
+			if (!rounds)
+				rounds_change = 2;
+			else
+				rounds_change = 5;
+		}
+	}
+	if (blink_return && blink_return < time) {
+		if (rounds_change == 6) {
+			blink_return = time + 3;
+			rounds_change = 7;
+		} else {
+			blink_return = 0;
+			rounds_change = 0;
+		}
 	}
 
-	if (round_changetime <= (time + 2) && rounds && round_changetime) {
-		rounds_change = 5;
-	}
-
-	if (blink_return && blink_return < time && rounds_change == 6)
-	{
-		blink_return = time + 3;
-		rounds_change = 7;
-	}
-	if (blink_return && blink_return < time && rounds_change == 7)
-	{
-		blink_return = 0;
-		rounds_change = 0;
-	}
-	if (round_changetime >= time)
-		return;
-	if (round_changetime)
-	{
+	if (round_changetime < time && round_changetime != 0) {
 		roundtype = 1;
-			
 		NewRound();
 		return;
-	}
-	if (Total_Zombies > Current_Zombies && spawn_time < time)
-	{
+	} else if (round_changetime != 0) return;
+
+	if (Total_Zombies > Current_Zombies && spawn_time < time) {
 		Spawn_Enemy();
 	}
-	if (Remaining_Zombies < 1 && !Delay_Time)
-	{
+
+	if (Remaining_Zombies < 1 && !Delay_Time) {
 		Delay_Time = time + 2;
 		rounds_change = 3;
-	}
-	else if (Delay_Time && Delay_Time < time)
-	{
+	} else if (Delay_Time && Delay_Time < time) {
 		Delay_Time = 0;
 		EndRound();
 	}
-	
+
 	SetUpdate(self, UT_ROUNDS_CHANGE, rounds_change, 0, 0);
 }
 
 void() InitRounds =
-{		
+{
 	roundtype = 1;
 	delay_at_round = 2/0.95;
 	totalpowerups = 0;

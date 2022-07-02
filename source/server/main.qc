@@ -1,7 +1,7 @@
 /*
 	server/main.qc
 
-	mostly functions that will be called from the engine and are 
+	mostly functions that will be called from the engine and are
 	expected to exist
 
 	Copyright (C) 2021 NZ:P Team
@@ -36,83 +36,87 @@ void() main =
 	localcmd("echo Server starting...\n");
 }
 
+float ai_delay_time;
+
 //called for each frame that QC runs
 float zombie_cleaned_w;
 void() StartFrame =
 {
-	deathmatch = cvar("deathmatch");
-	//coop = cvar("coop");
 	framecount = framecount + 1;
 
 	if (waypoint_mode) {
 		if (!zombie_cleaned_w) {
-				entity zent;
-				zent = find (world, classname, "ai_zombie");
-				while (zent)
-				{
-					/*
-					if (zent.head)
-						remove (zent.head);
-					if (zent.larm)
-						remove (zent.larm);
-					if (zent.rarm)
-						remove (zent.rarm);
-					*/
-					remove (zent);
-					zent = find (zent, classname, "ai_zombie");
-				}
-				zombie_cleaned_w = true;
-				
-				zent = find (world, classname, "waypoint");
-				while (zent)
-				{
-					if (zent.targetname)
-						setmodel(zent, "models/way/normal_way_door.spr");
-					else
-						setmodel(zent, "models/way/normal_way.spr");
-					zent = find (zent, classname, "waypoint");
-				}
-				zent = find (world, classname, "door_nzp_cost");
-				while (zent)
-				{
-					zent.solid = SOLID_NOT;
-					zent.touch = SUB_Null;
-					zent = find (zent, classname, "door_nzp_cost");
-				}
-				zent = find (world, classname, "door_nzp");
-				while (zent)
-				{
-					zent.solid = SOLID_NOT;
-					zent.touch = SUB_Null;
-					zent.solid = SOLID_NOT;
-					zent = find (zent, classname, "door_nzp");
-				}
-				zent = find (world, classname, "window");
-				while (zent)
-				{
-					zent.solid = SOLID_NOT;
-					zent.touch = SUB_Null;
-					zent = find (zent, classname, "window");
-				}
+			entity zent;
+			zent = find (world, classname, "ai_zombie");
+			while (zent)
+			{
+				/*
+				if (zent.head)
+					remove (zent.head);
+				if (zent.larm)
+					remove (zent.larm);
+				if (zent.rarm)
+					remove (zent.rarm);
+				*/
+				remove (zent);
+				zent = find (zent, classname, "ai_zombie");
 			}
-			return;
+			zombie_cleaned_w = true;
+
+			zent = find (world, classname, "waypoint");
+			while (zent)
+			{
+				if (zent.targetname)
+					setmodel(zent, "models/way/normal_way_door.spr");
+				else
+					setmodel(zent, "models/way/normal_way.spr");
+				zent = find (zent, classname, "waypoint");
+			}
+			zent = find (world, classname, "door_nzp_cost");
+			while (zent)
+			{
+				zent.solid = SOLID_NOT;
+				zent.touch = SUB_Null;
+				zent = find (zent, classname, "door_nzp_cost");
+			}
+			zent = find (world, classname, "door_nzp");
+			while (zent)
+			{
+				zent.solid = SOLID_NOT;
+				zent.touch = SUB_Null;
+				zent.solid = SOLID_NOT;
+				zent = find (zent, classname, "door_nzp");
+			}
+			zent = find (world, classname, "window");
+			while (zent)
+			{
+				zent.solid = SOLID_NOT;
+				zent.touch = SUB_Null;
+				zent = find (zent, classname, "window");
+			}
 		}
-		
-	
+		return;
+	}
+
+
 	if (roundinit) {
 		Round_Core();
-		Do_Zombie_AI ();
+
+		if (ai_delay_time < time) {
+			Do_Zombie_AI ();
+			ai_delay_time = time + 0.05;
+		}
 	} else {
 		entity SpawnedIn;
 		SpawnedIn = find(world, classname, "player");
-	
+
 		if (SpawnedIn) {
 			entity getdog = find(world, classname, "spawn_dog");
 			if (getdog)
 				gotdog = 1;
-			else 
+			else
 				gotdog = 0;
-				
+
 			updateDogRound();
 			InitRounds();
 		}
@@ -120,16 +124,14 @@ void() StartFrame =
 }
 string(string s) precache_model         = #20;
 
-void() precaches = 
+void() precaches =
 {
 	precache_model ("models/player.mdl");
-	
+
 	#ifndef PSP
 	#ifndef NX
-	#ifndef CTR
 	if (world.song != "")
 		precache_sound (world.song);
-	#endif
 	#endif
 	#endif
 
@@ -150,14 +152,14 @@ void() precaches =
 	precache_model ("models/way/normal_way_door.spr");
 	precache_model ("models/way/way_jump.spr");
 	precache_model ("models/way/way_land.spr");
-	
+
 	// zombie
 	precache_model ("models/ai/zfull.mdl");
 	precache_model ("models/ai/zlarm.mdl");
 	precache_model ("models/ai/zrarm.mdl");
 	precache_model ("models/ai/zbod.mdl");
 	precache_model ("models/ai/zhead.mdl");
-	
+
 	// zombie crawler
 	precache_model ("models/ai/zcfull.mdl");
 	precache_model ("models/ai/zcbod.mdl");
@@ -170,20 +172,19 @@ void() precaches =
 	precache_model ("models/pu/perkbottle!.mdl");
 
 	// start weapons
-
 	precache_model ("models/weapons/m1911/v_colt.mdl");
 	precache_model ("models/weapons/m1911/g_colt.mdl");
 	precache_model ("models/weapons/knife/v_knife.mdl");
 	precache_model ("models/weapons/grenade/v_grenade.mdl");
 	precache_model ("models/weapons/grenade/g_grenade.mdl");
-	precache_model ("models/weapons/grenade/g_betty.mdl");	
+	precache_model ("models/weapons/grenade/g_betty.mdl");
 	precache_model ("models/weapons/grenade/v_betty.mdl");
 	precache_model ("models/weapons/morphine/v_morphine.mdl");
 
 	//
 	// Sounds
 	//
-	
+
 	// player-made
 	precache_sound("sounds/player/footstep1.wav");
 	precache_sound("sounds/player/footstep2.wav");
@@ -200,17 +201,17 @@ void() precaches =
 	precache_sound("sounds/weapons/colt/shoot.wav");
 	precache_sound("sounds/weapons/colt/slide.wav");
 	precache_sound("sounds/weapons/papfire.wav");
-	
+
 	// grenade
 	precache_sound("sounds/weapons/grenade/prime.wav");
 	precache_sound("sounds/weapons/grenade/throw.wav");
 	precache_sound("sounds/weapons/grenade/explode.wav");
-	
+
 	// melee
 	precache_sound("sounds/weapons/knife/knife_hitbod.wav");
 	precache_sound("sounds/weapons/knife/knife.wav");
 	precache_sound("sounds/weapons/knife/knife_hit.wav");
-	
+
 	// tunes
 	precache_sound("sounds/rounds/eround.wav");
 	precache_sound("sounds/rounds/nround.wav");
@@ -222,7 +223,7 @@ void() precaches =
 	precache_sound("sounds/misc/wood_door.wav");
 	precache_sound("sounds/misc/debris.wav");
 	precache_sound("sounds/misc/denybuy.wav");
-	precache_sound("sounds/misc/what.wav");	
+	precache_sound("sounds/misc/what.wav");
 
 	// power-ups
 	precache_sound ("sounds/pu/pickup.wav");
@@ -286,6 +287,7 @@ void() precaches =
 	precache_sound ("sounds/zombie/s1.wav");
 	precache_sound ("sounds/zombie/sc0.wav");
 	precache_sound ("sounds/zombie/sc1.wav");
+
 	// null
 	precache_sound("sounds/null.wav");
 
@@ -326,12 +328,12 @@ void() worldspawn =
 	clientstat(STAT_FACINGENEMY, EV_FLOAT, facingenemy);
 	clientstat(STAT_VIEWZOOM, EV_FLOAT, viewzoom);
 	#endif
-	
+
 	mappath = strcat("maps/", mapname);
 	mappath = strzone(mappath);
 
 	LoadWaypointData();
-		
+
 	//set game elements
 	G_STARTPOINTS = 500;
 	G_STARTROUND = 1;
@@ -343,7 +345,7 @@ void() worldspawn =
 	G_PERKS = 0;
 	G_PERKPOWER = 0;
 	load_nzd();
-	
+
 }
 
 void() SpectatorConnect =
@@ -366,9 +368,9 @@ void() RelinkZombies =
 	{
 		if(ent.currentHitBoxSetup == 0)//empty bbox, we don't care to update
 			continue;
-		
+
 		makevectors (ent.angles);
-		
+
 		for(i = 0; i < 3; i++)
 		{
 			if(i == 0)
@@ -377,28 +379,28 @@ void() RelinkZombies =
 				ent2 = ent.larm;
 			if(i == 2)
 				ent2 = ent.rarm;
-				
-			
+
+
 			if (ent2)
 			{
 				//setorigin (ent.head, ent.origin + v_right * ent.head.view_ofs_x + v_forward * ent.head.view_ofs_y + v_up * ent.head.view_ofs_z);
 				setorigin (ent2, ent.origin);
 				//fixme, move angles set and frame set to below the continue, we only want to update origin (maybe angles too?)
 				ent2.angles = ent.angles;
-				
+
 				if(ent2.deadflag)
-					ent2.frame = ent.frame; 
-				
+					ent2.frame = ent.frame;
+
 				//if(OnlyOrigin)
 				//	continue;
-					
+
 				min = ent2.bbmins + (v_right * ent2.view_ofs_x) + (v_forward * ent2.view_ofs_y) + (v_up * ent2.view_ofs_z);
 				max = ent2.bbmaxs + (v_right * ent2.view_ofs_x) + (v_forward * ent2.view_ofs_y) + (v_up * ent2.view_ofs_z);
-				
+
 				if(min_x > max_x) { min_x += max_x; max_x = min_x - max_x; min_x -= max_x; }
 				if(min_y > max_y) { min_y += max_y; max_y = min_y - max_y; min_y -= max_y; }
 				if(min_z > max_z) { min_z += max_z; max_z = min_z - max_z; min_z -= max_z; }
-				
+
 				setsize(ent2,min,max);
 			}
 

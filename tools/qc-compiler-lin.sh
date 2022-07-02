@@ -2,7 +2,7 @@
 
 cd ../
 # create build directories
-mkdir -p build/{pc,psp,nx,vita}
+mkdir -p build/{pc,psp,nx,vita,ctr}
 cd bin/
 echo ""
 echo "===================="
