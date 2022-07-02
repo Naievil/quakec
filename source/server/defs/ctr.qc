@@ -87,11 +87,18 @@ void		end_sys_globals;		// flag for structure dumping
 .float 		kills;
 .float		weapon;			// one of the W_COLT, etc flags
 .string		weaponmodel;
+.string 	weapon2model;
 .float		weaponframe;
+.float		weapon2frame;
 .float		currentammo;
 .float		currentmag;
 .float		zoom;
-.float 		items;
+.float 		weaponskin;
+.float 		weapon2skin;
+.float		primary_grenades;
+.float		secondary_grenades;
+.float		grenades;
+.float		perks;			// bit flags
 .float		takedamage;
 .entity		chain;
 .float		deadflag;
@@ -116,8 +123,6 @@ void		end_sys_globals;		// flag for structure dumping
 .float		team;
 .float		max_health;		// players maximum health is stored here
 .float		teleport_time;	// don't back up
-.float 		armortype;
-.float 		armorvalue;
 .float		waterlevel;		// 0 = not in, 1 = feet, 2 = wast, 3 = eyes
 .float		watertype;		// a contents value
 .float		ideal_yaw;
@@ -127,22 +132,26 @@ void		end_sys_globals;		// flag for structure dumping
 .entity 	larm;
 .entity 	rarm;
 .entity 	goalentity;		// a movetarget or an enemy
+//.entity 	goalorigin;		// a movetarget location
 .float		spawnflags;
 .string		target;
 .string		targetname;
-.float 		dmg_take;
-.float 		dmg_save;
+.float		bleed_out;
+.float		progress_bar;
 .entity		dmg_inflictor;
 .entity		owner;		// who launched a missile
 .vector		movedir;	// mostly for doors, but also used for waterjump
 .string		message;		// trigger messages
 .float		sounds;		// either a cd track number or sound number
 .string     noise, noise1, noise2, noise3;  // contains names of wavs to play
+.float		x2_icon;			// double points icon
+.float 		insta_icon;
 .vector		ADS_Offset;
 .vector		Flash_Offset;
 .float 		Flash_Size;
 .string 	Weapon_Name;
 .string		Weapon_Name_Touch;
+.float      currentmag2;
 .float      maxspeed;
 .float      facingenemy;
 void		end_sys_fields;			// flag for structure dumping
