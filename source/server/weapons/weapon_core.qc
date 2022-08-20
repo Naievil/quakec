@@ -2107,7 +2107,7 @@ void () Impulse_Functions =
 			W_SprintStop();
 			break;
 		case 25:
-			#ifdef PSP
+			#if defined (PSP) || defined (CTR)
 			switch_nade();
 			#else
 			W_Betty();
@@ -2516,7 +2516,7 @@ void () Weapon_Logic =
 	
 	if (self.button6 && !self.semiknife)
 	{ 
-		#ifdef PSP
+		#if defined (PSP) || defined (CTR)
 		if (self.sprinting) {
 			dolphin_dive();
 			return;
