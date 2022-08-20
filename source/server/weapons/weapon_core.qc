@@ -1036,7 +1036,7 @@ void(float side) W_FireGrenade =
 	nade.velocity = v_forward*1000;		
 	nade.avelocity = '50 -50 50';
 
-	centerprint(self, vtos(nade.angles));
+	//centerprint(self, vtos(nade.angles));
 
 	nade.touch = GrenadeExplode;
 	setsize(nade, '0 0 0', '0 0 0');
